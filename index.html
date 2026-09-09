@@ -7,16 +7,21 @@
 
     <!-- Styling -->
     <style>
+        body {
+            background: #191919;
+        }
+        
         blockquote {
-            background: #f9f9f9;
-            border-left: 10px solid #ccc;
+            background: #f9f9f942;
+            border-left: 10px solid #5555FF;
             margin: 1.5em 10px;
             padding: 0.5em 10px;
             quotes: "\201C""\201D""\2018""\2019";
+            color: white;
         }
         
         blockquote:before {
-            color: #ccc;
+            color: white;
             content: open-quote;
             font-size: 4em;
             line-height: 0.1em;
@@ -110,7 +115,7 @@
                     ${quoteData[0]}
                     </p>
                     </br>
-                    <p><cite>—${quoteData[1]}</cite></p>
+                    <p><cite>— ${quoteData[1]}</cite></p>
                 </blockquote> 
         `;
 
