@@ -32,7 +32,7 @@
 function csvInit() {
 
     // Opent he document and call the function.
-    xhReq.open("GET", "/data/quotes-file.csv", false); // false == sync request
+    xhReq.open("GET", "./data/quotes-file.csv", false); // false == sync request
     xhReq.send(null);
 
     return quoteArray;
