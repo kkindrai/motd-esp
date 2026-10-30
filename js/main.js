@@ -15,6 +15,10 @@ function getQuote() {
     let index = indexTotal % indexLoop; // Value to use as index (calculates using remainder of Total & Loop)
     let currentQuote = quoteData[index];
 
+    // Fill if undefined/null author
+    if(currentQuote.author == undefined || currentQuote.author == null) {
+        currentQuote.author = 'Desconocido';
+    }
     
     // Return
     return [currentQuote.quote, currentQuote.author];
