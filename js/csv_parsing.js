@@ -29,11 +29,11 @@
  * 
  * @returns quoteArray.length, quoteArray
 */
-function csvInit() {
+async function csvInit() {
 
     // Opent he document and call the function.
-    xhReq.open("GET", "./data/quotes-file.csv", false); // false == sync request
-    xhReq.send(null);
+    await xhReq.open("GET", "https://kkindrai.github.io/motd-esp/data/quotes-file.csv", true); // false == sync request || Uses the github instead of local because repo name
+    await xhReq.send(null);
 
     return quoteArray;
 }
