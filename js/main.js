@@ -5,34 +5,23 @@
 */
 function getQuote() {
 
-    // Create Function Objects
+    // Create Local Variables
     let quoteData = csvInit();
-    let quoteObject;
-    let authorObject;
-    let quoteText = '';
-    let authorText = '';
-    let currentDay = new Date().getDate();
+    let startDate = new Date("2001-08-29");
+    let dateNow = new Date();
+    let currentDate = new Date(`${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}`);
+    let indexTotal = currentDate - startDate;
+    let indexLoop = quoteData.length;
+    let index = indexTotal % indexLoop; // Value to use as index (calculates using remainder of Total & Loop)
+    let currentQuote = quoteData[index];
 
-    console.log(quoteData);
-
-
-
-
-    // // Get Author Data (If Available)
-    // if (quoteObject.author_id !== null) {
-    //     url = `https://www.positive-api.online/authors`;
-
-    //     authorObject = JSON.parse(requestData(url));
-    //     authorText = authorObject.find(record => record.id === quoteObject.author_id).name;
-
-    // } else {
-    //     authorText = 'Desconocido'
-    // }
-
-    // // Assemble Quote Object
-    // quoteData = [quoteText, authorText];
-
-    // return quoteData;
+    // Fill if undefined/null author
+    if(currentQuote.author == undefined || currentQuote.author == null) {
+        currentQuote.author = 'Desconocido';
+    }
+    
+    // Return
+    return [currentQuote.quote, currentQuote.author];
 }
 /**
  * getQuote - END
@@ -47,17 +36,17 @@ function buildDOM() {
     let quoteData = getQuote();
     let content = document.getElementById('content');
 
-    // let htmlQuote = `
-    //         <blockquote cite="https://www.positive-api.online/phrase/esp">
-    //             <p>
-    //             ${quoteData[0]}
-    //             </p>
-    //             </br>
-    //             <p><cite>— ${quoteData[1]}</cite></p>
-    //         </blockquote> 
-    // `;
+    let htmlQuote = `
+            <blockquote cite="https://www.positive-api.online/phrase/esp">
+                <p>
+                ${quoteData[0]}
+                </p>
+                </br>
+                <p><cite>— ${quoteData[1]}</cite></p>
+            </blockquote> 
+    `;
 
-    // content.innerHTML = htmlQuote;
+    content.innerHTML = htmlQuote;
 
     
 

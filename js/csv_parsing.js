@@ -27,13 +27,13 @@
  * ────୨୧────────୨୧────
  * csvInit Function - START
  * 
- * @returns quoteArray
+ * @returns quoteArray.length, quoteArray
 */
 function csvInit() {
 
     // Opent he document and call the function.
-    xhReq.open("GET", "/data/quotes-file.csv", true);
-    xhReq.send();
+    xhReq.open("GET", "/data/quotes-file.csv", false); // false == sync request
+    xhReq.send(null);
 
     return quoteArray;
 }
@@ -68,8 +68,11 @@ xhReq.onreadystatechange = function() {
             quoteArray.push(item);
             id++;
         });
+
+        return [quoteArray.length, JSON.stringify(quoteArray)];
     }
 };
+
 
 
 
