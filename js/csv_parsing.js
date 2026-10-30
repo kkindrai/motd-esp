@@ -13,20 +13,47 @@
  * 
  * 
  * To implement this cookie, use the following:
- *  `let quoteData = JSON.parse(getCookie('data'));`
+ *  `let quoteData = csvInit();`
  * 
  */
 
+// GLOBAL VARIABLES
 // Create Local Variables
-let xhReq = new XMLHttpRequest();
-let quoteArray = [];
+    let xhReq = new XMLHttpRequest();
+    let quoteArray = [];
 
 
+/**
+ * ────୨୧────────୨୧────
+ * csvInit Function - START
+ * 
+ * @returns quoteArray
+*/
+function csvInit() {
+
+    // Opent he document and call the function.
+    xhReq.open("GET", "/data/quotes-file.csv", true);
+    xhReq.send();
+
+    return quoteArray;
+}
+/**
+ * csvInit Function - END
+ * ────୨୧────────୨୧────
+*/
+
+
+
+/**
+ * Document Functionality - FINAL
+ * ────୨୧────────୨୧────
+*/
+// For when the data is updated.
 xhReq.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-       // local variables
-       let id = 0;
-       
+    // local variables
+    let id = 0;
+    
         // Map the data
         data = xhReq.responseText.split('\n').map(row => row.split('|'));
 
@@ -41,12 +68,9 @@ xhReq.onreadystatechange = function() {
             quoteArray.push(item);
             id++;
         });
-
-    // Place data into cookie
-    createCookie('data', JSON.stringify(quoteArray));    
-
     }
 };
 
-xhReq.open("GET", "/data/quotes-file.csv", true);
-xhReq.send();
+
+
+
