@@ -11,7 +11,8 @@ function getQuote() {
     let dateNow = new Date();
     let currentDate = new Date(`${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}`);
     let indexTotal = currentDate - startDate;
-    let index = indexTotal % quoteData.length; // Value to use as index (calculates using remainder of Total & array length)
+    let indexLoop = quoteData.length;
+    let index = indexTotal % indexLoop; // Value to use as index (calculates using remainder of Total & Loop)
     let currentQuote = quoteData[index];
 
     // Fill if undefined/null author
