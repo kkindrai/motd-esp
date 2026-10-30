@@ -1,20 +1,11 @@
-// Declare document data
-const fileInput = "/data/quotes-file.csv";
+let xhReq = new XMLHttpRequest();
 
-
-const readFile = () => {
-    const reader = new FileReader();
-
-    // Function called when file is successfully read
-    reader.onload = () => {
-        const csvData = reader.result;
-
-        // Set CSV Data to localStorage
-        localStorage.setItem("csvData", JSON.stringify(csvData));
+xhReq.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+    console.log(xhReq.response);
     }
+};
 
-    reader.readAsText(fileInput);
-}
-
-
-console.log(localStorage.csvData);
+xhReq.open("GET", "/data/quotes-file.csv", true);
+xhReq.send();
